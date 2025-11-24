@@ -1,295 +1,349 @@
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { ServiceCard } from "@/components/service-card"
-import { TestimonialCard } from "@/components/testimonial-card"
-import { PricingCard } from "@/components/pricing-card"
-import { Droplets, Sparkles, Wrench, Fuel, Home, Car, ArrowRight } from "lucide-react"
-import Link from "next/link"
-import { PromotionsBanner } from "@/components/promotions-banner"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { ServiceCard } from "@/components/service-card";
+import { TestimonialCard } from "@/components/testimonial-card";
+import { PricingCard } from "@/components/pricing-card";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import {
+  Droplets,
+  Sparkles,
+  Wrench,
+  Fuel,
+  Home,
+  Car,
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+  Trophy,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
-      <PromotionsBanner
-        title="Limited Time Offer!"
-        description="Get 30% off on all services this November. Use code: SHINE30"
-        discount="30%"
-        ctaText="Book Now"
-        bgColor="bg-gradient-to-r from-primary to-accent"
-      />
-
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-sm shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center">
-              <Droplets className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold text-foreground">CarWash Somalia</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#services" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Services
-            </a>
-            <a
-              href="#testimonials"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Testimonials
-            </a>
-            <a href="#pricing" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Pricing
-            </a>
-            <a href="/gallery" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Gallery
-            </a>
-            <a href="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              About
-            </a>
-            <a href="/faq" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              FAQ
-            </a>
-            <Link href="/book">
-              <Button className="ml-2">Book Now</Button>
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen bg-background font-sans selection:bg-primary selection:text-white">
+      <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 py-24 md:py-40">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Background Gradients */}
+        <div className="absolute inset-0 bg-background z-0" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background z-0" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-primary/10 rounded-full blur-[120px] z-0" />
+
+        {/* Animated Particles/Overlay */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0 mix-blend-overlay" />
+
+        <div className="container relative z-10 px-4 mx-auto text-center">
+          <h1 className="animate-fade-in-up animation-delay-200 text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 tracking-tighter leading-[1] drop-shadow-2xl">
+            Redefining <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-secondary animate-gradient-x">
+              Perfection
+            </span>
+          </h1>
+
+          <p className="animate-fade-in-up animation-delay-300 text-lg md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
+            Experience the ultimate shine with our eco-friendly technology and
+            expert craftsmanship. We treat your car like royalty.
+          </p>
+
+          <div className="animate-fade-in-up animation-delay-400 flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Link href="/book">
+              <Button
+                size="lg"
+                className="h-16 px-10 text-xl font-semibold rounded-full shadow-[0_0_30px_-5px_var(--color-primary)] hover:shadow-[0_0_50px_-10px_var(--color-primary)] hover:scale-105 transition-all duration-300 bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                Book Appointment
+                <ArrowRight className="ml-2 h-6 w-6" />
+              </Button>
+            </Link>
+            <Link href="#services">
+              <Button
+                size="lg"
+                variant="outline"
+                className="h-16 px-10 text-xl font-semibold rounded-full border-white/10 text-white hover:bg-white/5 hover:text-white bg-white/5 backdrop-blur-sm hover:scale-105 transition-all duration-300"
+              >
+                Explore Services
+              </Button>
+            </Link>
+          </div>
+
+          {/* Stats */}
+          <div className="animate-fade-in-up animation-delay-500 mt-32 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/5 pt-12 max-w-6xl mx-auto">
+            {[
+              { label: "Happy Clients", value: "5k+" },
+              { label: "Years Experience", value: "10+" },
+              { label: "Satisfaction", value: "100%" },
+              { label: "Support", value: "24/7" },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="text-center group cursor-default p-4 rounded-2xl hover:bg-white/5 transition-colors duration-300"
+              >
+                <div className="text-5xl font-black text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                  {stat.value}
+                </div>
+                <p className="text-sm text-slate-500 font-bold uppercase tracking-widest">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section - Merged into a better flow */}
+      <section className="py-32 bg-background relative z-10">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Professional Car Care Solutions</span>
-            </div>
-
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 text-balance leading-tight">
-              Your Car Deserves to Shine
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto leading-relaxed">
-              Professional car washing, maintenance, and detailing services in Somalia. We bring the shine back to your
-              vehicle with expert care and eco-friendly products.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/book">
-                <Button size="lg" className="text-base gap-2">
-                  Book a Wash
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="/services">
-                <Button size="lg" variant="outline" className="text-base bg-transparent">
-                  Explore Services
-                </Button>
-              </Link>
-            </div>
-
-            <div className="mt-16 flex flex-col sm:flex-row gap-8 justify-center">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">5000+</div>
-                <p className="text-muted-foreground">Satisfied Customers</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              {
+                icon: <ShieldCheck className="h-10 w-10 text-secondary" />,
+                title: "Premium Protection",
+                desc: "Advanced ceramic coatings that protect your paint for years, not weeks.",
+              },
+              {
+                icon: <Clock className="h-10 w-10 text-secondary" />,
+                title: "Time Efficient",
+                desc: "Quick turnaround times without compromising on quality or attention to detail.",
+              },
+              {
+                icon: <Trophy className="h-10 w-10 text-secondary" />,
+                title: "Award Winning",
+                desc: "Recognized as the best car care service in the region for 3 years running.",
+              },
+            ].map((feature, i) => (
+              <div
+                key={i}
+                className="group p-10 rounded-3xl bg-card border border-white/5 hover:border-primary/20 hover:bg-white/5 transition-all duration-500 hover:-translate-y-2"
+              >
+                <div className="h-20 w-20 rounded-2xl bg-secondary/10 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  {feature.desc}
+                </p>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">10+</div>
-                <p className="text-muted-foreground">Years Experience</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">100%</div>
-                <p className="text-muted-foreground">Satisfaction Rate</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Premium Services</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              From quick washes to comprehensive care packages, we offer everything your vehicle needs to look and
-              perform its best
+      <section
+        id="services"
+        className="py-32 bg-secondary/5 relative overflow-hidden"
+      >
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-0" />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-24">
+            <h2 className="text-5xl md:text-6xl font-black text-foreground mb-8 tracking-tighter">
+              Premium Services
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Tailored care packages designed to protect and enhance your
+              vehicle's value.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             <ServiceCard
               icon={<Droplets className="h-8 w-8" />}
-              title="Basic Wash"
-              description="Exterior wash with premium soap, tire cleaning, and hand drying"
-              price="$15"
-            />
-            <ServiceCard
-              icon={<Sparkles className="h-8 w-8" />}
-              title="Deep Cleaning"
-              description="Complete interior and exterior detailing with wax protection"
-              price="$45"
-            />
-            <ServiceCard
-              icon={<Sparkles className="h-8 w-8" />}
-              title="Interior Wash"
-              description="Vacuum, upholstery cleaning, dashboard polish, and air freshening"
+              title="Signature Wash"
+              description="Meticulous exterior hand wash, wheel cleaning, and spot-free drying."
               price="$25"
             />
             <ServiceCard
+              icon={<Sparkles className="h-8 w-8" />}
+              title="Interior Detailing"
+              description="Deep cleaning of carpets, upholstery, leather treatment, and sanitization."
+              price="$85"
+            />
+            <ServiceCard
               icon={<Wrench className="h-8 w-8" />}
-              title="Oil Change"
-              description="Professional oil change service with quality engine oil"
-              price="$35"
+              title="Ceramic Coating"
+              description="Long-lasting paint protection against UV rays, scratches, and dirt."
+              price="$150"
             />
             <ServiceCard
               icon={<Fuel className="h-8 w-8" />}
-              title="Fluid Top-Up"
-              description="Check and refill all essential fluids including coolant and washer fluid"
-              price="$20"
+              title="Engine Bay Detail"
+              description="Safe degreasing and dressing of engine components for a showroom look."
+              price="$45"
             />
             <ServiceCard
               icon={<Car className="h-8 w-8" />}
-              title="Tire Check"
-              description="Tire pressure check, alignment inspection, and tread depth analysis"
-              price="$15"
+              title="Paint Correction"
+              description="Restoration of paint clarity by removing swirls and scratches."
+              price="$200"
+            />
+            <ServiceCard
+              icon={<Sparkles className="h-8 w-8" />}
+              title="Full Service Package"
+              description="Complete interior and exterior makeover for the ultimate transformation."
+              price="$250"
             />
           </div>
 
-          <div className="mt-16 space-y-4 text-center mb-12">
-            <h3 className="text-2xl font-semibold text-foreground">How We Serve You</h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="p-8 border-2 border-primary/20 hover:border-primary/50 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-14 w-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Home className="h-7 w-7 text-primary" />
+          {/* Service Options */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-24">
+            <div className="group p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-card to-background hover:border-primary/30 transition-all duration-500 relative overflow-hidden">
+              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative z-10 flex items-start gap-8">
+                <div className="h-20 w-20 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
+                  <Home className="h-10 w-10 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Home Service</h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    We come to your location with all equipment. Perfect for busy schedules and convenience.
+                  <h3 className="text-3xl font-bold text-foreground mb-3">
+                    Home Service
+                  </h3>
+                  <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+                    We come to your location with all equipment. Perfect for
+                    busy schedules.
                   </p>
-                  <Button variant="outline" className="w-full bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="h-12 px-8 rounded-full border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
                     Schedule Home Visit
                   </Button>
                 </div>
               </div>
-            </Card>
+            </div>
 
-            <Card className="p-8 border-2 border-primary/20 hover:border-primary/50 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="h-14 w-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Car className="h-7 w-7 text-primary" />
+            <div className="group p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-card to-background hover:border-primary/30 transition-all duration-500 relative overflow-hidden">
+              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative z-10 flex items-start gap-8">
+                <div className="h-20 w-20 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
+                  <Car className="h-10 w-10 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Drive-In Service</h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    Visit our state-of-the-art facility for quick and professional service with comfortable waiting
-                    areas.
+                  <h3 className="text-3xl font-bold text-foreground mb-3">
+                    Drive-In Service
+                  </h3>
+                  <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+                    Visit our state-of-the-art facility for quick and
+                    professional service.
                   </p>
-                  <Button variant="outline" className="w-full bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="h-12 px-8 rounded-full border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
                     Find Location
                   </Button>
                 </div>
               </div>
-            </Card>
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 text-primary font-medium hover:gap-3 transition-all"
-            >
-              View All Services & Details
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 bg-muted/30">
+      <section id="pricing" className="py-32 bg-background relative">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Choose a monthly plan that fits your needs and save up to 30% on regular service rates
+          <div className="text-center mb-24">
+            <h2 className="text-5xl md:text-6xl font-black text-foreground mb-8 tracking-tighter">
+              Transparent Pricing
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Choose the perfect plan for your vehicle's needs. No hidden fees.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Link href="/subscribe">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-center">
+            <PricingCard
+              title="Basic Shine"
+              price="$29"
+              features={[
+                { text: "Exterior Hand Wash", included: true },
+                { text: "Wheel Cleaning", included: true },
+                { text: "Tire Dressing", included: true },
+                { text: "Interior Vacuum", included: true },
+                { text: "Window Cleaning", included: true },
+                { text: "Spray Wax", included: false },
+                { text: "Leather Treatment", included: false },
+              ]}
+              buttonText="Choose Basic"
+            />
+            <div className="relative transform md:-translate-y-4 z-10">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary via-cyan-400 to-secondary rounded-3xl blur opacity-75 animate-pulse" />
               <PricingCard
-                title="Basic Plan"
-                price="$40"
-                features={[
-                  { text: "4 Basic Washes per month", included: true },
-                  { text: "1 Interior Cleaning", included: true },
-                  { text: "Tire Pressure Check", included: true },
-                  { text: "Deep Cleaning", included: false },
-                  { text: "Priority Booking", included: false },
-                ]}
-              />
-            </Link>
-            <Link href="/subscribe">
-              <PricingCard
-                title="Silver Plan"
-                price="$75"
+                title="Premium Detail"
+                price="$59"
                 isPopular={true}
                 features={[
-                  { text: "Unlimited Basic Washes", included: true },
-                  { text: "2 Interior Cleanings", included: true },
-                  { text: "Fluids Top-Up", included: true },
-                  { text: "1 Deep Cleaning", included: true },
-                  { text: "Priority Booking", included: true },
+                  { text: "Exterior Hand Wash", included: true },
+                  { text: "Wheel Cleaning", included: true },
+                  { text: "Tire Dressing", included: true },
+                  { text: "Interior Vacuum", included: true },
+                  { text: "Window Cleaning", included: true },
+                  { text: "Spray Wax", included: true },
+                  { text: "Leather Treatment", included: false },
                 ]}
+                buttonText="Choose Premium"
               />
-            </Link>
-            <Link href="/subscribe">
-              <PricingCard
-                title="Gold Plan"
-                price="$120"
-                features={[
-                  { text: "Unlimited Everything", included: true },
-                  { text: "Weekly Deep Cleaning", included: true },
-                  { text: "Oil Change Labor Included", included: true },
-                  { text: "Premium Wax Treatment", included: true },
-                  { text: "VIP Priority Support", included: true },
-                ]}
-              />
-            </Link>
+            </div>
+            <PricingCard
+              title="Ultimate Protection"
+              price="$99"
+              features={[
+                { text: "Exterior Hand Wash", included: true },
+                { text: "Wheel Cleaning", included: true },
+                { text: "Tire Dressing", included: true },
+                { text: "Interior Vacuum", included: true },
+                { text: "Window Cleaning", included: true },
+                { text: "Spray Wax", included: true },
+                { text: "Leather Treatment", included: true },
+              ]}
+              buttonText="Choose Ultimate"
+            />
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">What Our Customers Say</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Join thousands of satisfied customers who trust us with their vehicles
+      <section
+        id="testimonials"
+        className="py-32 bg-slate-950 relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-50" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-24">
+            <h2 className="text-5xl md:text-6xl font-black text-white mb-8 tracking-tighter">
+              Client Stories
+            </h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              Hear from our valued clients about their experience with CarWash
+              Somalia.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             <TestimonialCard
               name="Ahmed Hassan"
-              role="Business Owner"
-              content="Excellent service! My car looks brand new every time. The home service option is so convenient for my busy schedule."
+              role="Business Executive"
+              content="The attention to detail is unmatched. My car looks better than the day I bought it. Highly recommended for anyone who values quality."
               rating={5}
             />
-            <TestimonialCard
-              name="Fatima Mohamed"
-              role="Teacher"
-              content="Very professional team and affordable prices. I've been using their monthly subscription and it's great value for money."
-              rating={5}
-            />
+            <div className="transform md:-translate-y-8">
+              <TestimonialCard
+                name="Fatima Mohamed"
+                role="Interior Designer"
+                content="I love the eco-friendly products they use. It's great to know my car is being cleaned safely and responsibly. Excellent service!"
+                rating={5}
+              />
+            </div>
             <TestimonialCard
               name="Omar Ibrahim"
-              role="Engineer"
-              content="Best car wash in Somalia! They pay attention to every detail and the staff is always friendly and helpful."
+              role="Car Enthusiast"
+              content="Finally, a car wash that understands car culture. They treat every vehicle with respect and the results speak for themselves."
               rating={5}
             />
           </div>
@@ -297,102 +351,35 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-primary via-primary/90 to-primary/80">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
+      <section className="py-40 bg-primary relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-blue-900/90" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent" />
+
+        <div className="container relative z-10 mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-black text-white mb-10 tracking-tighter leading-tight">
               Ready to Make Your Car Shine?
             </h2>
-            <p className="text-lg text-primary-foreground/90 mb-8 leading-relaxed">
-              Book your first service today and experience the difference of professional car care with our expert team
+            <p className="text-2xl text-white/90 mb-12 leading-relaxed font-light max-w-2xl mx-auto">
+              Book your first service today and experience the difference of
+              professional car care with our expert team.
             </p>
             <Link href="/book">
-              <Button size="lg" variant="secondary" className="text-base gap-2">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="h-20 px-12 text-2xl font-bold rounded-full shadow-[0_0_40px_-10px_rgba(255,255,255,0.5)] hover:shadow-[0_0_60px_-10px_rgba(255,255,255,0.7)] hover:scale-105 transition-all duration-300 gap-4"
+              >
                 Book Your Service Now
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-6 w-6" />
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-                  <Droplets className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <span className="text-lg font-bold text-foreground">CarWash Somalia</span>
-              </div>
-              <p className="text-sm text-muted-foreground">Professional car wash and care services across Somalia.</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-foreground mb-4">Services</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Car Wash
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Detailing
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Oil Change
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Maintenance
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-foreground mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-primary transition-colors">
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-foreground mb-4">Contact</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Mogadishu, Somalia</li>
-                <li>info@carwash.so</li>
-                <li>+252 61 234 5678</li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 CarWash Somalia. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
-  )
+  );
 }

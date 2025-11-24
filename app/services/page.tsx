@@ -1,42 +1,24 @@
-import { ServiceCard } from "@/components/service-card"
-import { PricingCard } from "@/components/pricing-card"
-import { Button } from "@/components/ui/button"
-import { Droplets, Sparkles, Wrench, Fuel, Car, ArrowLeft } from "lucide-react"
-import Link from "next/link"
+import { ServiceCard } from "@/components/service-card";
+import { PricingCard } from "@/components/pricing-card";
+import { Button } from "@/components/ui/button";
+import { Droplets, Sparkles, Wrench, Fuel, Car, ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              <span className="hidden sm:inline font-medium">Back to Home</span>
-            </Link>
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-                <Droplets className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="text-lg font-bold text-foreground">CarWash Somalia</span>
-            </div>
-          </div>
-          <Link href="/book">
-            <Button>Book Now</Button>
-          </Link>
-        </div>
-      </header>
+      <SiteHeader variant="solid" />
 
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Our Services & Pricing</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-4">
+            Our Services & Pricing
+          </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Transparent pricing for all your car care needs. Choose from individual services or save with our monthly
-            subscriptions.
+            Transparent pricing for all your car care needs. Choose from
+            individual services or save with our monthly subscriptions.
           </p>
         </div>
 
@@ -132,12 +114,7 @@ export default function ServicesPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-12">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>&copy; 2025 CarWash Somalia. All rights reserved.</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
-  )
+  );
 }

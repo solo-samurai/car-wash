@@ -1,75 +1,168 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Menu, Droplets } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+"use client";
 
-export function SiteHeader() {
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Menu, Droplets, X } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+
+export function SiteHeader({
+  variant = "default",
+}: {
+  variant?: "default" | "solid";
+}) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ];
+
+  const isSolid = variant === "solid" || isScrolled;
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-2 font-bold text-xl text-primary">
-          <Droplets className="h-6 w-6" />
-          <span>SomaliWash</span>
-        </div>
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link href="/" className="hover:text-primary transition-colors">
-            Home
-          </Link>
-          <Link href="/#services" className="hover:text-primary transition-colors">
-            Services
-          </Link>
-          <Link href="/pricing" className="hover:text-primary transition-colors">
-            Pricing
-          </Link>
-          <Link href="/dashboard" className="hover:text-primary transition-colors">
-            Dashboard
-          </Link>
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        isSolid
+          ? "bg-background/80 backdrop-blur-md border-b shadow-sm py-4"
+          : "bg-transparent py-6"
+      )}
+    >
+      <div className="container mx-auto flex items-center justify-between px-4">
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-blue-600 text-white shadow-lg transition-transform group-hover:scale-105">
+            <Droplets className="h-6 w-6" />
+          </div>
+          <span
+            className={cn(
+              "text-xl font-bold tracking-tight transition-colors",
+              isSolid ? "text-foreground" : "text-foreground md:text-white"
+            )}
+          >
+            SomaliWash
+          </span>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary relative group",
+                isSolid
+                  ? "text-foreground/80"
+                  : "text-white/90 hover:text-white"
+              )}
+            >
+              {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+            </Link>
+          ))}
         </nav>
+
         <div className="hidden md:flex items-center gap-4">
           <Link href="/login">
-            <Button variant="ghost" size="sm">
+            <Button
+              variant="ghost"
+              size="sm"
+              className={cn(
+                isSolid
+                  ? "text-foreground"
+                  : "text-white hover:bg-white/20 hover:text-white"
+              )}
+            >
               Log In
             </Button>
           </Link>
           <Link href="/book">
-            <Button size="sm">Book a Wash</Button>
+            <Button
+              size="sm"
+              className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
+            >
+              Book Now
+            </Button>
           </Link>
         </div>
+
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-5 w-5" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(
+                isSolid ? "text-foreground" : "text-foreground md:text-white"
+              )}
+            >
+              <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right">
-            <nav className="flex flex-col gap-4 mt-8">
-              <Link href="/" className="text-lg font-medium">
-                Home
-              </Link>
-              <Link href="/#services" className="text-lg font-medium">
-                Services
-              </Link>
-              <Link href="/pricing" className="text-lg font-medium">
-                Pricing
-              </Link>
-              <Link href="/dashboard" className="text-lg font-medium">
-                Dashboard
-              </Link>
-              <div className="flex flex-col gap-2 mt-4">
+          <SheetContent
+            side="right"
+            className="w-[300px] sm:w-[400px] border-l-primary/20"
+          >
+            <div className="flex flex-col gap-8 mt-8">
+              <div className="flex items-center gap-2 px-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
+                  <Droplets className="h-6 w-6" />
+                </div>
+                <span className="text-xl font-bold">SomaliWash</span>
+              </div>
+
+              <nav className="flex flex-col gap-4">
+                {navLinks.map((link) => (
+                  <SheetClose asChild key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-lg font-medium px-4 py-2 rounded-lg hover:bg-secondary/50 transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </SheetClose>
+                ))}
+              </nav>
+
+              <div className="flex flex-col gap-3 mt-auto mb-8">
                 <Link href="/login">
-                  <Button variant="outline" className="w-full bg-transparent">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-2"
+                    size="lg"
+                  >
                     Log In
                   </Button>
                 </Link>
                 <Link href="/book">
-                  <Button className="w-full">Book a Wash</Button>
+                  <Button
+                    className="w-full justify-start gap-2 shadow-lg shadow-primary/20"
+                    size="lg"
+                  >
+                    Book Appointment
+                  </Button>
                 </Link>
               </div>
-            </nav>
+            </div>
           </SheetContent>
         </Sheet>
       </div>
     </header>
-  )
+  );
 }
