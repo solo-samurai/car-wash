@@ -191,52 +191,130 @@ export default function HomePage() {
           </div>
 
           {/* Service Options */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-24">
-            <div className="group p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-card to-background hover:border-primary/30 transition-all duration-500 relative overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto mt-24">
+            {/* Option 1: Home Wash */}
+            <div className="group p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-card to-background hover:border-primary/30 transition-all duration-500 relative overflow-hidden flex flex-col">
               <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10 flex items-start gap-8">
-                <div className="h-20 w-20 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
-                  <Home className="h-10 w-10 text-primary" />
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <Home className="h-8 w-8 text-primary" />
                 </div>
-                <div className="text-left">
-                  <h3 className="text-3xl font-bold text-foreground mb-3">
-                    Home Service
-                  </h3>
-                  <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
-                    We come to your location with all equipment. Perfect for
-                    busy schedules.
+                <h3 className="text-2xl font-bold text-foreground mb-3">
+                  Home Wash
+                </h3>
+                <div className="mb-6 flex-grow">
+                  <p className="text-muted-foreground leading-relaxed mb-2">
+                    <span className="font-semibold text-primary">
+                      Solo Worker
+                    </span>
                   </p>
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    We come to you. Perfect for a quick, professional wash using
+                    your water & electricity.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                      Exterior & Interior Wash
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                      No Deep Services
+                    </li>
+                  </ul>
+                </div>
+                <Link href="/book?mode=solo" className="w-full">
                   <Button
                     variant="outline"
-                    className="h-12 px-8 rounded-full border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    className="w-full rounded-full border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   >
-                    Schedule Home Visit
+                    Book Home Wash
                   </Button>
-                </div>
+                </Link>
               </div>
             </div>
 
-            <div className="group p-10 rounded-3xl border border-white/10 bg-gradient-to-br from-card to-background hover:border-primary/30 transition-all duration-500 relative overflow-hidden">
+            {/* Option 2: Drive-In */}
+            <div className="group p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-card to-background hover:border-primary/30 transition-all duration-500 relative overflow-hidden flex flex-col">
               <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative z-10 flex items-start gap-8">
-                <div className="h-20 w-20 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
-                  <Car className="h-10 w-10 text-primary" />
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <Car className="h-8 w-8 text-primary" />
                 </div>
-                <div className="text-left">
-                  <h3 className="text-3xl font-bold text-foreground mb-3">
-                    Drive-In Service
-                  </h3>
-                  <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
-                    Visit our state-of-the-art facility for quick and
-                    professional service.
+                <h3 className="text-2xl font-bold text-foreground mb-3">
+                  Visit Center
+                </h3>
+                <div className="mb-6 flex-grow">
+                  <p className="text-muted-foreground leading-relaxed mb-2">
+                    <span className="font-semibold text-primary">
+                      Partner Center
+                    </span>
                   </p>
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    Drive to one of our partner centers for a complete service
+                    experience.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                      Deep Cleaning Available
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                      Oil & Fluid Changes
+                    </li>
+                  </ul>
+                </div>
+                <Link href="/book?mode=center" className="w-full">
                   <Button
                     variant="outline"
-                    className="h-12 px-8 rounded-full border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    className="w-full rounded-full border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   >
-                    Find Location
+                    Find Center
                   </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Option 3: Pickup & Delivery */}
+            <div className="group p-8 rounded-3xl border border-white/10 bg-gradient-to-br from-card to-background hover:border-primary/30 transition-all duration-500 relative overflow-hidden flex flex-col">
+              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <Clock className="h-8 w-8 text-primary" />
                 </div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">
+                  Pickup & Delivery
+                </h3>
+                <div className="mb-6 flex-grow">
+                  <p className="text-muted-foreground leading-relaxed mb-2">
+                    <span className="font-semibold text-primary">
+                      Partner Center
+                    </span>
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed text-sm">
+                    We pick up your car, give it the royal treatment, and bring
+                    it back.
+                  </p>
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                      Full Deep Service
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                      Maximum Convenience
+                    </li>
+                  </ul>
+                </div>
+                <Link href="/book?mode=pickup" className="w-full">
+                  <Button
+                    variant="outline"
+                    className="w-full rounded-full border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    Schedule Pickup
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
