@@ -151,45 +151,6 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            <ServiceCard
-              icon={<Droplets className="h-8 w-8" />}
-              title="Signature Wash"
-              description="Meticulous exterior hand wash, wheel cleaning, and spot-free drying."
-              price="$25"
-            />
-            <ServiceCard
-              icon={<Sparkles className="h-8 w-8" />}
-              title="Interior Detailing"
-              description="Deep cleaning of carpets, upholstery, leather treatment, and sanitization."
-              price="$85"
-            />
-            <ServiceCard
-              icon={<Wrench className="h-8 w-8" />}
-              title="Ceramic Coating"
-              description="Long-lasting paint protection against UV rays, scratches, and dirt."
-              price="$150"
-            />
-            <ServiceCard
-              icon={<Fuel className="h-8 w-8" />}
-              title="Engine Bay Detail"
-              description="Safe degreasing and dressing of engine components for a showroom look."
-              price="$45"
-            />
-            <ServiceCard
-              icon={<Car className="h-8 w-8" />}
-              title="Paint Correction"
-              description="Restoration of paint clarity by removing swirls and scratches."
-              price="$200"
-            />
-            <ServiceCard
-              icon={<Sparkles className="h-8 w-8" />}
-              title="Full Service Package"
-              description="Complete interior and exterior makeover for the ultimate transformation."
-              price="$250"
-            />
-          </div>
-
           {/* Service Options */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto mt-24">
             {/* Option 1: Home Wash */}

@@ -8,6 +8,9 @@ import {
   SheetContent,
   SheetTrigger,
   SheetClose,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -29,7 +32,6 @@ export function SiteHeader({
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
@@ -118,13 +120,16 @@ export function SiteHeader({
           <SheetContent
             side="right"
             className="w-[300px] sm:w-[400px] border-l-primary/20"
+            aria-describedby="mobile-menu"
           >
             <div className="flex flex-col gap-8 mt-8">
               <div className="flex items-center gap-2 px-2">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
                   <Droplets className="h-6 w-6" />
                 </div>
-                <span className="text-xl font-bold">SomaliWash</span>
+                <SheetTitle className="text-xl font-bold">
+                  SomaliWash
+                </SheetTitle>
               </div>
 
               <nav className="flex flex-col gap-4">
@@ -140,7 +145,7 @@ export function SiteHeader({
                 ))}
               </nav>
 
-              <div className="flex flex-col gap-3 mt-auto mb-8">
+              <SheetFooter className="flex flex-col px-4 gap-3 mt-auto mb-8">
                 <Link href="/login">
                   <Button
                     variant="outline"
@@ -158,7 +163,7 @@ export function SiteHeader({
                     Book Appointment
                   </Button>
                 </Link>
-              </div>
+              </SheetFooter>
             </div>
           </SheetContent>
         </Sheet>

@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 export function SiteFooter() {
   return (
     <footer className="bg-slate-950 text-slate-200 border-t border-slate-800">
-      <div className="container mx-auto py-16 md:py-24">
+      <div className="container px-4 mx-auto py-16 md:py-24">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-2 font-bold text-2xl text-white">
@@ -56,24 +56,6 @@ export function SiteFooter() {
           <div className="flex flex-col gap-6">
             <h3 className="font-bold text-lg text-white">Quick Links</h3>
             <ul className="flex flex-col gap-3">
-              <li>
-                <Link
-                  href="/#services"
-                  className="text-slate-400 hover:text-primary transition-colors flex items-center gap-2"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary/50" />
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pricing"
-                  className="text-slate-400 hover:text-primary transition-colors flex items-center gap-2"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary/50" />
-                  Pricing Plans
-                </Link>
-              </li>
               <li>
                 <Link
                   href="/gallery"
