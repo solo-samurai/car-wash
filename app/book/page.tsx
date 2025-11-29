@@ -91,7 +91,7 @@ export default function BookingPage() {
     <div className="min-h-screen bg-background font-sans">
       <SiteHeader />
 
-      <div className="container mx-auto px-4 py-12 md:py-24">
+      <div className="container mx-auto px-4 py-24 md:py-34">
         {/* Step 1: Immersive Mode Selection */}
         {step === 1 ? (
           <div className="max-w-6xl mx-auto">

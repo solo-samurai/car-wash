@@ -26,7 +26,7 @@ export default function HomePage() {
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-30">
         {/* Background Gradients */}
         <div className="absolute inset-0 bg-background z-0" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background z-0" />
@@ -177,11 +177,11 @@ export default function HomePage() {
                   <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      Exterior & Interior Wash
+                      Basic & Full Washes
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      No Deep Services
+                      We Come to You
                     </li>
                   </ul>
                 </div>
@@ -219,11 +219,11 @@ export default function HomePage() {
                   <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      Deep Cleaning Available
+                      Full Detail & Maintenance
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      Oil & Fluid Changes
+                      Professional Equipment
                     </li>
                   </ul>
                 </div>
@@ -304,50 +304,47 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-center">
             <PricingCard
-              title="Basic Shine"
-              price="$29"
+              title="Basic Exterior"
+              price="$15"
               features={[
                 { text: "Exterior Hand Wash", included: true },
                 { text: "Wheel Cleaning", included: true },
-                { text: "Tire Dressing", included: true },
-                { text: "Interior Vacuum", included: true },
-                { text: "Window Cleaning", included: true },
+                { text: "Window Cleaning (Ext)", included: true },
+                { text: "Interior Vacuum", included: false },
+                { text: "Tire Dressing", included: false },
                 { text: "Spray Wax", included: false },
-                { text: "Leather Treatment", included: false },
               ]}
               buttonText="Choose Basic"
             />
             <div className="relative transform md:-translate-y-4 z-10">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary via-cyan-400 to-secondary rounded-3xl blur opacity-75 animate-pulse" />
               <PricingCard
-                title="Premium Detail"
-                price="$59"
+                title="Full Service"
+                price="$30"
                 isPopular={true}
                 features={[
                   { text: "Exterior Hand Wash", included: true },
-                  { text: "Wheel Cleaning", included: true },
-                  { text: "Tire Dressing", included: true },
                   { text: "Interior Vacuum", included: true },
-                  { text: "Window Cleaning", included: true },
-                  { text: "Spray Wax", included: true },
-                  { text: "Leather Treatment", included: false },
+                  { text: "Dashboard Wipe", included: true },
+                  { text: "Window Cleaning (In/Out)", included: true },
+                  { text: "Tire Dressing", included: true },
+                  { text: "Spray Wax", included: false },
                 ]}
-                buttonText="Choose Premium"
+                buttonText="Choose Full"
               />
             </div>
             <PricingCard
-              title="Ultimate Protection"
-              price="$99"
+              title="Full Detail"
+              price="$100"
               features={[
-                { text: "Exterior Hand Wash", included: true },
-                { text: "Wheel Cleaning", included: true },
-                { text: "Tire Dressing", included: true },
-                { text: "Interior Vacuum", included: true },
-                { text: "Window Cleaning", included: true },
-                { text: "Spray Wax", included: true },
-                { text: "Leather Treatment", included: true },
+                { text: "Full Service Wash", included: true },
+                { text: "Deep Interior Clean", included: true },
+                { text: "Shampoo & Steam", included: true },
+                { text: "Leather Care", included: true },
+                { text: "Exterior Polish & Wax", included: true },
+                { text: "Engine Bay Clean", included: true },
               ]}
-              buttonText="Choose Ultimate"
+              buttonText="Choose Detail"
             />
           </div>
         </div>
