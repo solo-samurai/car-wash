@@ -61,7 +61,7 @@ export default function ContactPage() {
       <div className="container mx-auto px-4 pb-24 -mt-10 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
           {/* Contact Info Cards */}
-          <Card className="p-8 border border-white/5 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 group">
+          <Card className="p-8 border border-white/5 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 group hover:-translate-y-1">
             <div className="flex items-start gap-5">
               <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                 <Phone className="h-7 w-7 text-primary" />
@@ -70,43 +70,45 @@ export default function ContactPage() {
                 <h3 className="text-xl font-bold text-foreground mb-2">
                   Phone
                 </h3>
-                <p className="text-muted-foreground mb-1">+252 61 234 5678</p>
+                <p className="text-muted-foreground mb-1">+252 61 500 0000</p>
                 <p className="text-sm text-primary font-medium">
-                  Available 24/7
+                  Premium Support 24/7
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-8 border border-white/5 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 group">
+          <Card className="p-8 border border-white/5 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 group hover:-translate-y-1">
             <div className="flex items-start gap-5">
-              <div className="h-14 w-14 rounded-2xl bg-secondary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <Mail className="h-7 w-7 text-secondary" />
+              <div className="h-14 w-14 rounded-2xl bg-blue-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <Mail className="h-7 w-7 text-blue-500" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-2">
                   Email
                 </h3>
-                <p className="text-muted-foreground mb-1">info@carwash.so</p>
-                <p className="text-sm text-secondary font-medium">
-                  We reply within 24 hours
+                <p className="text-muted-foreground mb-1">info@sifeyn.so</p>
+                <p className="text-sm text-blue-500 font-medium">
+                  Concierge Service
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-8 border border-white/5 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 group">
+          <Card className="p-8 border border-white/5 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 group hover:-translate-y-1">
             <div className="flex items-start gap-5">
-              <div className="h-14 w-14 rounded-2xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <MapPin className="h-7 w-7 text-foreground" />
+              <div className="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <MapPin className="h-7 w-7 text-white" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-2">
-                  Location
+                  HQ Location
                 </h3>
-                <p className="text-muted-foreground mb-1">Mogadishu, Somalia</p>
-                <p className="text-sm text-foreground/70 font-medium">
-                  3 service centers
+                <p className="text-muted-foreground mb-1">
+                  Maka Al Mukarama, Mogadishu
+                </p>
+                <p className="text-sm text-white/70 font-medium">
+                  Flagship Center
                 </p>
               </div>
             </div>
@@ -122,8 +124,8 @@ export default function ContactPage() {
                   Send us a Message
                 </h2>
                 <p className="text-muted-foreground">
-                  Fill out the form below and our team will get back to you
-                  shortly.
+                  Fill out the form below and our concierge team will get back
+                  to you shortly.
                 </p>
               </div>
 
@@ -225,7 +227,7 @@ export default function ContactPage() {
 
                 <Button
                   type="submit"
-                  className="w-full h-12 text-base font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
+                  className="w-full h-12 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all rounded-xl"
                 >
                   Send Message
                   <Send className="ml-2 h-4 w-4" />
@@ -250,19 +252,19 @@ export default function ContactPage() {
                 <div className="flex items-center justify-between p-3 rounded-lg bg-background/30 border border-white/5">
                   <span className="text-muted-foreground">Monday - Friday</span>
                   <span className="font-semibold text-foreground">
-                    7:00 AM - 8:00 PM
+                    7:00 AM - 10:00 PM
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-background/30 border border-white/5">
                   <span className="text-muted-foreground">Saturday</span>
                   <span className="font-semibold text-foreground">
-                    8:00 AM - 6:00 PM
+                    8:00 AM - 9:00 PM
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-background/30 border border-white/5">
                   <span className="text-muted-foreground">Sunday</span>
                   <span className="font-semibold text-foreground">
-                    9:00 AM - 5:00 PM
+                    9:00 AM - 8:00 PM
                   </span>
                 </div>
               </div>
@@ -270,12 +272,12 @@ export default function ContactPage() {
               <div className="mt-6 pt-6 border-t border-white/5">
                 <p className="text-sm text-muted-foreground flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                  Emergency service available on request
+                  Priority service available for members
                 </p>
               </div>
             </Card>
 
-            <Card className="p-8 border border-white/5 bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm">
+            <Card className="p-8 border border-white/5 bg-gradient-to-br from-primary/10 to-blue-500/10 backdrop-blur-sm">
               <h3 className="text-xl font-bold text-foreground mb-4">
                 Service Areas
               </h3>
@@ -304,12 +306,16 @@ export default function ContactPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <h4 className="text-lg font-bold text-white mb-2">
-                  Visit Our Main Center
+                  Visit Our Flagship Center
                 </h4>
                 <p className="text-white/80 text-sm">
                   Maka Al Mukarama Rd, Mogadishu
                 </p>
-                <Button variant="secondary" size="sm" className="mt-4 w-full">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="mt-4 w-full font-semibold"
+                >
                   Get Directions
                 </Button>
               </div>

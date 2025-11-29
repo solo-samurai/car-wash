@@ -5,17 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -26,13 +18,16 @@ import {
 import {
   Check,
   Calendar,
-  MapPin,
-  Car,
-  Home,
-  Clock,
   ChevronRight,
   ChevronLeft,
+  Loader2,
 } from "lucide-react";
+import { BookingSelection } from "@/components/booking/BookingSelection";
+import { ServiceList } from "@/components/booking/ServiceList";
+import { PartnerList } from "@/components/booking/PartnerList";
+import { WorkerAssignment } from "@/components/booking/WorkerAssignment";
+import { SERVICES, PARTNERS, Service, Partner, Worker } from "@/lib/data";
+import { Switch } from "@/components/ui/switch";
 
 export default function BookingPage() {
   const searchParams = useSearchParams();
@@ -41,12 +36,14 @@ export default function BookingPage() {
   const [step, setStep] = useState(1);
   const [bookingData, setBookingData] = useState({
     mode: initialMode, // 'solo', 'center', 'pickup'
-    service: "",
+    serviceId: "",
+    partnerId: "",
     date: "",
     time: "",
-    address: "",
     vehicleType: "",
+    isSubscriber: false,
   });
+  const [assignedWorker, setAssignedWorker] = useState<Worker | null>(null);
 
   // Update mode if URL param changes
   useEffect(() => {
@@ -58,314 +55,261 @@ export default function BookingPage() {
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
 
-  const services = {
-    solo: [
-      {
-        id: "basic_home",
-        name: "Basic Home Wash",
-        price: 25,
-        desc: "Exterior wash & interior vacuum",
-      },
-      {
-        id: "premium_home",
-        name: "Premium Home Wash",
-        price: 45,
-        desc: "Basic + wax & tire shine",
-      },
-    ],
-    center: [
-      {
-        id: "deep_interior",
-        name: "Deep Interior Detail",
-        price: 85,
-        desc: "Shampoo, steam & leather care",
-      },
-      {
-        id: "oil_change",
-        name: "Oil Change Package",
-        price: 60,
-        desc: "Synthetic oil & filter change",
-      },
-      {
-        id: "full_detail",
-        name: "Full Detail",
-        price: 150,
-        desc: "Complete interior & exterior",
-      },
-    ],
-    pickup: [
-      {
-        id: "deep_interior_pickup",
-        name: "Deep Interior (Pickup)",
-        price: 100,
-        desc: "Includes pickup & delivery fee",
-      },
-      {
-        id: "full_detail_pickup",
-        name: "Full Detail (Pickup)",
-        price: 165,
-        desc: "Includes pickup & delivery fee",
-      },
-    ],
-  };
+  // Filter services based on mode
+  const availableServices = SERVICES.filter((s) => {
+    if (bookingData.mode === "solo")
+      return s.type === "mobile" || s.type === "both";
+    return s.type === "center" || s.type === "both";
+  });
 
-  const currentServices =
-    services[bookingData.mode as keyof typeof services] || [];
+  // Filter partners based on mode
+  const availablePartners = PARTNERS.filter((p) => {
+    if (bookingData.mode === "pickup") return p.hasValet;
+    return true;
+  });
+
+  const selectedService = SERVICES.find((s) => s.id === bookingData.serviceId);
+  const selectedPartner = PARTNERS.find((p) => p.id === bookingData.partnerId);
+
+  const calculateTotal = () => {
+    let total = selectedService ? selectedService.price : 0;
+
+    // Subscriber logic: Free wash if category is 'wash'
+    if (bookingData.isSubscriber && selectedService?.category === "wash") {
+      total = 0;
+    }
+
+    // Add valet fee
+    if (bookingData.mode === "pickup" && selectedPartner?.valetFee) {
+      total += selectedPartner.valetFee;
+    }
+
+    return total;
+  };
 
   return (
     <div className="min-h-screen bg-background font-sans">
       <SiteHeader />
 
       <div className="container mx-auto px-4 py-12 md:py-24">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-12 text-center">
-            <h1 className="text-4xl font-bold mb-4">Book Your Service</h1>
-            <p className="text-muted-foreground">
-              Complete the steps below to schedule your appointment.
-            </p>
-
-            {/* Progress Steps */}
-            <div className="flex justify-center items-center gap-4 mt-8">
-              <div
-                className={`h-3 w-3 rounded-full ${
-                  step >= 1 ? "bg-primary" : "bg-muted"
-                }`}
-              />
-              <div
-                className={`h-1 w-12 ${step >= 2 ? "bg-primary" : "bg-muted"}`}
-              />
-              <div
-                className={`h-3 w-3 rounded-full ${
-                  step >= 2 ? "bg-primary" : "bg-muted"
-                }`}
-              />
-              <div
-                className={`h-1 w-12 ${step >= 3 ? "bg-primary" : "bg-muted"}`}
-              />
-              <div
-                className={`h-3 w-3 rounded-full ${
-                  step >= 3 ? "bg-primary" : "bg-muted"
-                }`}
-              />
+        {/* Step 1: Immersive Mode Selection */}
+        {step === 1 ? (
+          <div className="max-w-6xl mx-auto">
+            <BookingSelection
+              mode={bookingData.mode}
+              onModeChange={(mode) => {
+                setBookingData({ ...bookingData, mode });
+                // Optional: Auto-advance or let user click next
+              }}
+            />
+            <div className="flex justify-center mt-12">
+              <Button
+                size="lg"
+                onClick={handleNext}
+                className="h-14 px-12 text-lg rounded-full shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+              >
+                Continue to Services <ChevronRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
+        ) : (
+          <div className="max-w-3xl mx-auto">
+            <div className="mb-8">
+              <Button
+                variant="ghost"
+                onClick={() => setStep(1)}
+                className="pl-0 hover:pl-2 transition-all text-muted-foreground hover:text-primary"
+              >
+                <ChevronLeft className="mr-2 h-4 w-4" /> Change Service Mode
+              </Button>
+            </div>
 
-          <Card className="border-muted/50 shadow-lg">
-            <CardContent className="p-6 md:p-8">
-              {/* Step 1: Choose Mode */}
-              {step === 1 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold mb-6">
-                    How would you like your service?
-                  </h2>
-                  <RadioGroup
-                    value={bookingData.mode}
-                    onValueChange={(val) =>
-                      setBookingData({ ...bookingData, mode: val })
-                    }
-                    className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                  >
-                    <div
-                      className={`relative flex flex-col items-center p-6 border-2 rounded-xl cursor-pointer hover:border-primary/50 transition-all ${
-                        bookingData.mode === "solo"
-                          ? "border-primary bg-primary/5"
-                          : "border-muted"
-                      }`}
-                    >
-                      <RadioGroupItem
-                        value="solo"
-                        id="solo"
-                        className="absolute right-4 top-4"
-                      />
-                      <Home className="h-10 w-10 mb-4 text-primary" />
-                      <Label
-                        htmlFor="solo"
-                        className="text-lg font-semibold cursor-pointer"
-                      >
-                        Home Wash
-                      </Label>
-                      <p className="text-sm text-center text-muted-foreground mt-2">
-                        We come to you. Simple wash only.
-                      </p>
-                    </div>
-
-                    <div
-                      className={`relative flex flex-col items-center p-6 border-2 rounded-xl cursor-pointer hover:border-primary/50 transition-all ${
-                        bookingData.mode === "center"
-                          ? "border-primary bg-primary/5"
-                          : "border-muted"
-                      }`}
-                    >
-                      <RadioGroupItem
-                        value="center"
-                        id="center"
-                        className="absolute right-4 top-4"
-                      />
-                      <Car className="h-10 w-10 mb-4 text-primary" />
-                      <Label
-                        htmlFor="center"
-                        className="text-lg font-semibold cursor-pointer"
-                      >
-                        Visit Center
-                      </Label>
-                      <p className="text-sm text-center text-muted-foreground mt-2">
-                        You drive to us. Full services available.
-                      </p>
-                    </div>
-
-                    <div
-                      className={`relative flex flex-col items-center p-6 border-2 rounded-xl cursor-pointer hover:border-primary/50 transition-all ${
-                        bookingData.mode === "pickup"
-                          ? "border-primary bg-primary/5"
-                          : "border-muted"
-                      }`}
-                    >
-                      <RadioGroupItem
-                        value="pickup"
-                        id="pickup"
-                        className="absolute right-4 top-4"
-                      />
-                      <Clock className="h-10 w-10 mb-4 text-primary" />
-                      <Label
-                        htmlFor="pickup"
-                        className="text-lg font-semibold cursor-pointer"
-                      >
-                        Pickup & Delivery
-                      </Label>
-                      <p className="text-sm text-center text-muted-foreground mt-2">
-                        We pick up & return. Maximum convenience.
-                      </p>
-                    </div>
-                  </RadioGroup>
-                </div>
-              )}
-
-              {/* Step 2: Choose Service */}
-              {step === 2 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold mb-6">
-                    Select a Service Package
-                  </h2>
-                  <div className="grid grid-cols-1 gap-4">
-                    {currentServices.map((service) => (
-                      <div
-                        key={service.id}
-                        className={`flex items-center justify-between p-6 border rounded-xl cursor-pointer hover:border-primary transition-all ${
-                          bookingData.service === service.id
-                            ? "border-primary bg-primary/5 ring-1 ring-primary"
-                            : "border-border"
-                        }`}
-                        onClick={() =>
+            <Card className="border-muted/50 shadow-2xl overflow-hidden">
+              <CardContent className="p-6 md:p-8">
+                {/* Step 2: Choose Service & Partner */}
+                {step === 2 && (
+                  <div className="space-y-8">
+                    {/* Subscriber Toggle */}
+                    <div className="flex items-center justify-between p-4 bg-primary/5 rounded-xl border border-primary/20">
+                      <div className="space-y-0.5">
+                        <Label className="text-base font-semibold">
+                          Are you a subscriber?
+                        </Label>
+                        <p className="text-sm text-muted-foreground">
+                          Subscribers get unlimited exterior washes for free.
+                        </p>
+                      </div>
+                      <Switch
+                        checked={bookingData.isSubscriber}
+                        onCheckedChange={(checked) =>
                           setBookingData({
                             ...bookingData,
-                            service: service.id,
+                            isSubscriber: checked,
                           })
                         }
-                      >
-                        <div>
-                          <h3 className="text-lg font-semibold">
-                            {service.name}
-                          </h3>
-                          <p className="text-muted-foreground">
-                            {service.desc}
-                          </p>
-                        </div>
-                        <div className="text-xl font-bold text-primary">
-                          ${service.price}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Step 3: Details */}
-              {step === 3 && (
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold mb-6">Final Details</h2>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label>Preferred Date</Label>
-                      <div className="relative">
-                        <Calendar className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                        <Input type="date" className="pl-10" />
-                      </div>
+                      />
                     </div>
 
-                    <div className="space-y-2">
-                      <Label>Preferred Time</Label>
-                      <Select>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select time" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="09:00">09:00 AM</SelectItem>
-                          <SelectItem value="11:00">11:00 AM</SelectItem>
-                          <SelectItem value="14:00">02:00 PM</SelectItem>
-                          <SelectItem value="16:00">04:00 PM</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    <ServiceList
+                      services={availableServices}
+                      selectedServiceId={bookingData.serviceId}
+                      onSelect={(id) =>
+                        setBookingData({ ...bookingData, serviceId: id })
+                      }
+                      isSubscriber={bookingData.isSubscriber}
+                    />
 
-                    <div className="space-y-2 md:col-span-2">
-                      <Label>Vehicle Type</Label>
-                      <Select
-                        onValueChange={(val) =>
-                          setBookingData({ ...bookingData, vehicleType: val })
+                    {bookingData.mode !== "solo" && (
+                      <PartnerList
+                        partners={availablePartners}
+                        selectedPartnerId={bookingData.partnerId}
+                        onSelect={(id) =>
+                          setBookingData({ ...bookingData, partnerId: id })
                         }
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select vehicle type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="sedan">Sedan / Coupe</SelectItem>
-                          <SelectItem value="suv">SUV / Crossover</SelectItem>
-                          <SelectItem value="truck">Truck / Van</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                      />
+                    )}
+                  </div>
+                )}
 
-                    {(bookingData.mode === "solo" ||
-                      bookingData.mode === "pickup") && (
-                      <div className="space-y-2 md:col-span-2">
-                        <Label>Address</Label>
-                        <div className="relative">
-                          <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                          <Input
-                            placeholder="Enter your full address"
-                            className="pl-10"
-                          />
+                {/* Step 3: Worker Assignment (Solo) or Details */}
+                {step === 3 && (
+                  <div className="space-y-6">
+                    {bookingData.mode === "solo" ? (
+                      <WorkerAssignment
+                        onAssign={(worker) => setAssignedWorker(worker)}
+                      />
+                    ) : (
+                      <div className="space-y-6">
+                        <h2 className="text-2xl font-semibold mb-6">
+                          Schedule Appointment
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                            <Label>Preferred Date</Label>
+                            <div className="relative">
+                              <Calendar className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                              <Input type="date" className="pl-10" />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label>Preferred Time</Label>
+                            <Select>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select time" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="09:00">09:00 AM</SelectItem>
+                                <SelectItem value="11:00">11:00 AM</SelectItem>
+                                <SelectItem value="14:00">02:00 PM</SelectItem>
+                                <SelectItem value="16:00">04:00 PM</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
                         </div>
                       </div>
                     )}
                   </div>
-                </div>
-              )}
-            </CardContent>
+                )}
 
-            <CardFooter className="flex justify-between p-6 border-t bg-muted/20">
-              <Button
-                variant="ghost"
-                onClick={handleBack}
-                disabled={step === 1}
-                className="gap-2"
-              >
-                <ChevronLeft className="h-4 w-4" /> Back
-              </Button>
+                {/* Step 4: Final Confirmation */}
+                {step === 4 && (
+                  <div className="space-y-6">
+                    <h2 className="text-2xl font-semibold mb-6">
+                      Booking Summary
+                    </h2>
 
-              {step < 3 ? (
-                <Button onClick={handleNext} className="gap-2">
-                  Next Step <ChevronRight className="h-4 w-4" />
+                    <div className="bg-muted/30 p-6 rounded-xl space-y-4">
+                      <div className="flex justify-between items-center pb-4 border-b border-border">
+                        <span className="text-muted-foreground">
+                          Service Mode
+                        </span>
+                        <span className="font-medium capitalize">
+                          {bookingData.mode}
+                        </span>
+                      </div>
+
+                      <div className="flex justify-between items-center pb-4 border-b border-border">
+                        <span className="text-muted-foreground">Service</span>
+                        <span className="font-medium">
+                          {selectedService?.name}
+                        </span>
+                      </div>
+
+                      {bookingData.mode !== "solo" && (
+                        <div className="flex justify-between items-center pb-4 border-b border-border">
+                          <span className="text-muted-foreground">
+                            Partner Center
+                          </span>
+                          <span className="font-medium">
+                            {selectedPartner?.name}
+                          </span>
+                        </div>
+                      )}
+
+                      {assignedWorker && (
+                        <div className="flex justify-between items-center pb-4 border-b border-border">
+                          <span className="text-muted-foreground">
+                            Assigned Washer
+                          </span>
+                          <span className="font-medium">
+                            {assignedWorker.name}
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="flex justify-between items-center pt-2">
+                        <span className="text-lg font-bold">Total</span>
+                        <span className="text-2xl font-bold text-primary">
+                          ${calculateTotal()}
+                        </span>
+                      </div>
+
+                      {bookingData.isSubscriber &&
+                        selectedService?.category === "wash" && (
+                          <p className="text-sm text-green-600 text-right">
+                            Subscriber discount applied
+                          </p>
+                        )}
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+
+              <CardFooter className="flex justify-between p-6 border-t bg-muted/20">
+                <Button
+                  variant="ghost"
+                  onClick={handleBack}
+                  disabled={step === 1}
+                  className="gap-2"
+                >
+                  <ChevronLeft className="h-4 w-4" /> Back
                 </Button>
-              ) : (
-                <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-                  Confirm Booking <Check className="h-4 w-4" />
-                </Button>
-              )}
-            </CardFooter>
-          </Card>
-        </div>
+
+                {step < 4 ? (
+                  <Button
+                    onClick={handleNext}
+                    className="gap-2"
+                    disabled={
+                      (step === 2 && !bookingData.serviceId) ||
+                      (step === 2 &&
+                        bookingData.mode !== "solo" &&
+                        !bookingData.partnerId) ||
+                      (step === 3 &&
+                        bookingData.mode === "solo" &&
+                        !assignedWorker)
+                    }
+                  >
+                    Next Step <ChevronRight className="h-4 w-4" />
+                  </Button>
+                ) : (
+                  <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
+                    Confirm Booking <Check className="h-4 w-4" />
+                  </Button>
+                )}
+              </CardFooter>
+            </Card>
+          </div>
+        )}
       </div>
 
       <SiteFooter />

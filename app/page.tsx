@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ServiceCard } from "@/components/service-card";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { PricingCard } from "@/components/pricing-card";
+import { SubscriptionCard } from "@/components/subscription/SubscriptionCard";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import {
@@ -36,15 +37,15 @@ export default function HomePage() {
 
         <div className="container relative z-10 px-4 mx-auto text-center">
           <h1 className="animate-fade-in-up animation-delay-200 text-6xl md:text-8xl lg:text-9xl font-black text-white mb-8 tracking-tighter leading-[1] drop-shadow-2xl">
-            Redefining <br className="hidden md:block" />
+            Sifeyn <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-secondary animate-gradient-x">
-              Perfection
+              Premium Care
             </span>
           </h1>
 
           <p className="animate-fade-in-up animation-delay-300 text-lg md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
-            Experience the ultimate shine with our eco-friendly technology and
-            expert craftsmanship. We treat your car like royalty.
+            Elevate your driving experience with Sifeyn's world-class detailing
+            and maintenance services.
           </p>
 
           <div className="animate-fade-in-up animation-delay-400 flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -282,6 +283,13 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Subscription Section */}
+      <section className="py-20 bg-background relative z-10">
+        <div className="container mx-auto px-4">
+          <SubscriptionCard />
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-32 bg-background relative">
         <div className="container mx-auto px-4">
@@ -359,8 +367,7 @@ export default function HomePage() {
               Client Stories
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              Hear from our valued clients about their experience with CarWash
-              Somalia.
+              Hear from our valued clients about their experience with Sifeyn.
             </p>
           </div>
 

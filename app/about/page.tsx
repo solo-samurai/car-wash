@@ -45,7 +45,7 @@ export default function AboutPage() {
     {
       name: "Hassan Mohamed",
       role: "Founder & CEO",
-      bio: "With 15+ years in automotive care, Hassan established CarWash Somalia to bring world-class service to the region.",
+      bio: "With 15+ years in automotive care, Hassan established Sifeyn to bring world-class service to the region.",
     },
     {
       name: "Fatima Ali",
@@ -93,26 +93,28 @@ export default function AboutPage() {
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-sm text-primary-foreground mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <CheckCircle2 className="h-4 w-4" />
-              <span className="text-sm font-medium">Trusted Since 2016</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <CheckCircle2 className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium">
+                Redefining Excellence Since 2016
+              </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 text-balance animate-in fade-in slide-in-from-bottom-6 duration-700 delay-150">
-              About CarWash Somalia
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 text-balance tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-150">
+              About Sifeyn
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 text-pretty max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
-              Bringing professional car care excellence to Somalia with passion,
-              precision, and pride
+            <p className="text-xl md:text-2xl text-white/80 text-pretty max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300 font-light">
+              The premier destination for automotive care, combining advanced
+              technology with artisanal attention to detail.
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 animate-in fade-in slide-in-from-bottom-10 duration-700 delay-500">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 animate-in fade-in slide-in-from-bottom-10 duration-700 delay-500 border-t border-white/10 pt-12">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <div key={index} className="text-center group">
+                  <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 mb-2 group-hover:scale-110 transition-transform duration-500">
                     {stat.number}
                   </div>
-                  <div className="text-sm md:text-base text-white/80">
+                  <div className="text-sm md:text-base text-white/60 font-medium tracking-wide uppercase">
                     {stat.label}
                   </div>
                 </div>
@@ -123,67 +125,67 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story with Image */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-background relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20" />
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
             {/* Text Content */}
             <div>
-              <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                Our Journey
+              <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 tracking-wide uppercase">
+                Our Heritage
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                Our Story
+              <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 tracking-tight">
+                The Sifeyn Standard
               </h2>
-              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed font-light">
                 <p>
-                  CarWash Somalia was founded with a simple mission: to bring
-                  world-class car care services to our community. What started
-                  as a small operation has grown into the most trusted car wash
-                  and detailing service in the region.
+                  Sifeyn was born from a singular vision: to elevate the
+                  automotive care experience to a level of luxury and precision
+                  previously unseen in the region. We don't just wash cars; we
+                  restore them to their showroom glory.
                 </p>
                 <p>
-                  We believe every vehicle deserves premium care, regardless of
-                  its make or model. Our team of professionally trained
-                  specialists uses only the highest-quality products and latest
-                  technologies to ensure your car receives the best treatment
-                  possible.
+                  Our philosophy is simple yet uncompromising. We treat every
+                  vehicle as a masterpiece, employing only the most skilled
+                  artisans and the finest, eco-conscious products available
+                  globally.
                 </p>
                 <p>
-                  Today, we're proud to serve thousands of satisfied customers
-                  and have become a trusted name in automotive care across
-                  Somalia. Our commitment to quality, reliability, and customer
-                  satisfaction remains unwavering.
+                  Today, Sifeyn stands as a beacon of quality and trust. From
+                  our mobile valet services to our state-of-the-art centers, we
+                  are dedicated to preserving the beauty and value of your
+                  vehicle.
                 </p>
               </div>
             </div>
 
             {/* Image */}
-            <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 border border-white/10 group">
               <Image
                 src="/about-story.jpg"
-                alt="Our Team at Work"
+                alt="Sifeyn Team at Work"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-gradient-to-br from-muted/30 via-background to-muted/30">
+      <section className="py-24 bg-secondary/5 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              What Drives Us
+            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 tracking-wide uppercase">
+              Our Philosophy
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Our Core Values
+            <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tight">
+              Core Principles
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              These principles guide everything we do and define our commitment
-              to excellence
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
+              The pillars that define the Sifeyn experience
             </p>
           </div>
 
@@ -191,9 +193,9 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <Card
                 key={index}
-                className="p-8 border-2 border-primary/10 hover:border-primary/30 hover:shadow-xl hover:scale-105 transition-all duration-300 group"
+                className="p-8 border border-white/5 bg-background/50 backdrop-blur-sm hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 group"
               >
-                <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   {value.icon}
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">
@@ -212,15 +214,14 @@ export default function AboutPage() {
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              The People Behind Our Success
+            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 tracking-wide uppercase">
+              Leadership
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Meet Our Team
+            <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tight">
+              The Experts
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Dedicated professionals committed to delivering exceptional car
-              care
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
+              Masters of their craft, dedicated to perfection
             </p>
           </div>
 
@@ -228,21 +229,20 @@ export default function AboutPage() {
             {teamMembers.map((member, index) => (
               <Card
                 key={index}
-                className="p-10 border-2 border-primary/10 hover:border-primary/30 hover:shadow-2xl transition-all duration-300 group"
+                className="p-10 border border-white/5 bg-card hover:border-primary/20 hover:shadow-2xl transition-all duration-300 group"
               >
                 {/* Avatar */}
-                <div className="relative h-32 w-32 rounded-full bg-gradient-to-br from-primary/40 to-accent/40 flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300 shadow-lg">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 animate-pulse" />
-                  <Users className="h-16 w-16 text-primary relative z-10" />
+                <div className="relative h-32 w-32 rounded-full bg-gradient-to-br from-primary/10 to-blue-500/10 flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+                  <Users className="h-14 w-14 text-primary relative z-10" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground text-center mb-2">
                   {member.name}
                 </h3>
-                <p className="text-primary font-semibold text-center mb-4 text-lg">
+                <p className="text-primary font-medium text-center mb-4 text-lg">
                   {member.role}
                 </p>
                 <p className="text-muted-foreground text-center leading-relaxed">
-                  {member.bio}
+                  {member.bio.replace("CarWash Somalia", "Sifeyn")}
                 </p>
               </Card>
             ))}
@@ -251,30 +251,29 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-gradient-to-br from-primary via-primary to-accent rounded-3xl p-12 md:p-16 text-center shadow-2xl relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/5" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] p-12 md:p-20 text-center shadow-2xl shadow-primary/20 relative overflow-hidden border border-white/10">
             {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -mr-20 -mt-20" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-[100px] -ml-20 -mb-20" />
 
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-                Experience Our Difference
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+                Experience Sifeyn
               </h2>
-              <p className="text-xl text-primary-foreground/95 mb-10 max-w-2xl mx-auto">
-                Join thousands of satisfied customers who trust us with their
-                vehicles. Book today and discover the CarWash Somalia
-                difference!
+              <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto font-light">
+                Join the exclusive circle of drivers who refuse to compromise on
+                quality. Book your premium service today.
               </p>
               <Link href="/book">
                 <Button
                   size="lg"
-                  variant="secondary"
-                  className="text-lg px-8 py-6 hover:scale-105 transition-transform duration-300 shadow-xl"
+                  className="text-lg px-10 py-7 rounded-full bg-white text-slate-900 hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-xl font-bold"
                 >
-                  Book Your Service Today
-                  <ArrowRight className="ml-2 h-6 w-6" />
+                  Book Appointment
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>

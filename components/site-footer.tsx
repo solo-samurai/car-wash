@@ -21,7 +21,7 @@ export function SiteFooter() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
                 <Droplets className="h-6 w-6" />
               </div>
-              <span>SomaliWash</span>
+              <span>Sifeyn</span>
             </div>
             <p className="text-slate-400 leading-relaxed">
               Premium car care services delivered to your doorstep or at our
@@ -109,10 +109,10 @@ export function SiteFooter() {
               <li className="flex items-center gap-3 text-slate-400">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
                 <a
-                  href="mailto:info@somaliwash.so"
+                  href="mailto:info@sifeyn.so"
                   className="hover:text-white transition-colors"
                 >
-                  info@somaliwash.so
+                  info@sifeyn.so
                 </a>
               </li>
             </ul>
@@ -138,7 +138,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-16 border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} SomaliWash. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Sifeyn. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-white transition-colors">
               Privacy Policy

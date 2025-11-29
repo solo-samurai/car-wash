@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CarWash Somalia - Premium Car Wash & Care Services",
+  title: "Sifeyn - Premium Car Care & Valet Services",
   description:
-    "Professional car washing, maintenance, and detailing services in Somalia. Book online for home service or drive-in appointments.",
+    "Experience the ultimate in car care with Sifeyn. From mobile washes to premium center visits and valet pickup, we redefine perfection.",
   generator: "v0.app",
 };
 
