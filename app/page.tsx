@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ServiceCard } from "@/components/service-card";
 import { TestimonialCard } from "@/components/testimonial-card";
-import { PricingCard } from "@/components/pricing-card";
 import { SubscriptionCard } from "@/components/subscription/SubscriptionCard";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -287,66 +286,6 @@ export default function HomePage() {
       <section className="py-20 bg-background relative z-10">
         <div className="container mx-auto px-4">
           <SubscriptionCard />
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="py-32 bg-background relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-24">
-            <h2 className="text-5xl md:text-6xl font-black text-foreground mb-8 tracking-tighter">
-              Transparent Pricing
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Choose the perfect plan for your vehicle's needs. No hidden fees.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-center">
-            <PricingCard
-              title="Basic Exterior"
-              price="$15"
-              features={[
-                { text: "Exterior Hand Wash", included: true },
-                { text: "Wheel Cleaning", included: true },
-                { text: "Window Cleaning (Ext)", included: true },
-                { text: "Interior Vacuum", included: false },
-                { text: "Tire Dressing", included: false },
-                { text: "Spray Wax", included: false },
-              ]}
-              buttonText="Choose Basic"
-            />
-            <div className="relative transform md:-translate-y-4 z-10">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary via-cyan-400 to-secondary rounded-3xl blur opacity-75 animate-pulse" />
-              <PricingCard
-                title="Full Service"
-                price="$30"
-                isPopular={true}
-                features={[
-                  { text: "Exterior Hand Wash", included: true },
-                  { text: "Interior Vacuum", included: true },
-                  { text: "Dashboard Wipe", included: true },
-                  { text: "Window Cleaning (In/Out)", included: true },
-                  { text: "Tire Dressing", included: true },
-                  { text: "Spray Wax", included: false },
-                ]}
-                buttonText="Choose Full"
-              />
-            </div>
-            <PricingCard
-              title="Full Detail"
-              price="$100"
-              features={[
-                { text: "Full Service Wash", included: true },
-                { text: "Deep Interior Clean", included: true },
-                { text: "Shampoo & Steam", included: true },
-                { text: "Leather Care", included: true },
-                { text: "Exterior Polish & Wax", included: true },
-                { text: "Engine Bay Clean", included: true },
-              ]}
-              buttonText="Choose Detail"
-            />
-          </div>
         </div>
       </section>
 
