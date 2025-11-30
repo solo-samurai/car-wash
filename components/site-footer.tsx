@@ -58,15 +58,6 @@ export function SiteFooter() {
             <ul className="flex flex-col gap-3">
               <li>
                 <Link
-                  href="/gallery"
-                  className="text-slate-400 hover:text-primary transition-colors flex items-center gap-2"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary/50" />
-                  Our Gallery
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/about"
                   className="text-slate-400 hover:text-primary transition-colors flex items-center gap-2"
                 >

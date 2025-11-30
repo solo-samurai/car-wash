@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ServiceCard } from "@/components/service-card";
 import { TestimonialCard } from "@/components/testimonial-card";
-import { SubscriptionCard } from "@/components/subscription/SubscriptionCard";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import {
@@ -279,13 +278,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Subscription Section */}
-      <section className="py-20 bg-background relative z-10">
-        <div className="container mx-auto px-4">
-          <SubscriptionCard />
         </div>
       </section>
 
