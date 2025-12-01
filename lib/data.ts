@@ -28,37 +28,10 @@ export interface Worker {
 
 export const SERVICES: Service[] = [
   {
-    id: "basic_exterior",
-    name: "Basic Exterior Wash",
-    description: "Hand wash body, windows & wheels",
-    price: 15,
-    duration: 30,
-    type: "both",
-    category: "wash",
-  },
-  {
-    id: "full_wash",
-    name: "Full Service Wash",
-    description: "Exterior wash + interior vacuum & wipe",
-    price: 30,
-    duration: 45,
-    type: "both",
-    category: "wash",
-  },
-  {
-    id: "full_detail",
-    name: "Full Detail Package",
-    description: "Deep interior clean, shampoo, polish & wax",
-    price: 100,
-    duration: 180,
-    type: "center",
-    category: "detail",
-  },
-  {
     id: "oil_change",
     name: "Oil Change Package",
     description: "Synthetic oil & filter change",
-    price: 60,
+    price: 15,
     duration: 30,
     type: "center",
     category: "maintenance",
@@ -66,8 +39,8 @@ export const SERVICES: Service[] = [
   {
     id: "fluid_topup",
     name: "Fluid Top-up",
-    description: "Washer fluid, coolant, brake fluid",
-    price: 30,
+    description: "Washer fluid, coolant",
+    price: 10,
     duration: 15,
     type: "center",
     category: "maintenance",
@@ -82,7 +55,7 @@ export const PARTNERS: Partner[] = [
     rating: 4.8,
     hasValet: true,
     valetFee: 10,
-    services: ["full_wash", "full_detail", "oil_change", "fluid_topup"],
+    services: ["oil_change", "fluid_topup"],
   },
   {
     id: "p2",
@@ -99,7 +72,7 @@ export const PARTNERS: Partner[] = [
     rating: 4.9,
     hasValet: true,
     valetFee: 15,
-    services: ["full_wash", "full_detail"],
+    services: ["oil_change", "fluid_topup"],
   },
 ];
 

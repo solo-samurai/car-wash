@@ -129,27 +129,6 @@ export default function BookingPage() {
                 {/* Step 2: Choose Service & Partner */}
                 {step === 2 && (
                   <div className="space-y-8">
-                    {/* Subscriber Toggle */}
-                    <div className="flex items-center justify-between p-4 bg-primary/5 rounded-xl border border-primary/20">
-                      <div className="space-y-0.5">
-                        <Label className="text-base font-semibold">
-                          Are you a subscriber?
-                        </Label>
-                        <p className="text-sm text-muted-foreground">
-                          Subscribers get unlimited exterior washes for free.
-                        </p>
-                      </div>
-                      <Switch
-                        checked={bookingData.isSubscriber}
-                        onCheckedChange={(checked) =>
-                          setBookingData({
-                            ...bookingData,
-                            isSubscriber: checked,
-                          })
-                        }
-                      />
-                    </div>
-
                     <ServiceList
                       services={availableServices}
                       selectedServiceId={bookingData.serviceId}

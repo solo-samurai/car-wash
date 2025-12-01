@@ -1,14 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ServiceCard } from "@/components/service-card";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import {
-  Droplets,
-  Sparkles,
-  Wrench,
-  Fuel,
   Home,
   Car,
   ArrowRight,
