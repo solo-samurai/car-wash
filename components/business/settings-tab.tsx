@@ -10,74 +10,145 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
+import { Building2, Mail, Phone, Globe, MapPin, Save } from "lucide-react";
 
 export function SettingsTab() {
   return (
-    <div className="space-y-6 max-w-4xl">
-      <Card>
-        <CardHeader>
-          <CardTitle>Business Profile</CardTitle>
-          <CardDescription>
-            Manage your business information and public profile.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="businessName">Business Name</Label>
-              <Input id="businessName" defaultValue="CarWash Somalia" />
+    <div className="space-y-6">
+      <div className="grid gap-6 max-w-5xl">
+        {/* Business Profile Card */}
+        <Card className="border-2">
+          <CardHeader className="space-y-1 pb-4">
+            <div className="flex items-center gap-2">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Building2 className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <CardTitle className="text-xl">Business Profile</CardTitle>
+                <CardDescription className="text-sm">
+                  Update your business information visible to customers
+                </CardDescription>
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Business Email</Label>
-              <Input id="email" defaultValue="contact@carwashsomalia.com" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" defaultValue="+252 61 123 4567" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="website">Website</Label>
-              <Input id="website" defaultValue="www.carwashsomalia.com" />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="address">Address</Label>
-            <Input
-              id="address"
-              defaultValue="123 Maka Al Mukarama Rd, Mogadishu, Somalia"
-            />
-          </div>
-          <Button>Save Changes</Button>
-        </CardContent>
-      </Card>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Business Name */}
+              <div className="space-y-2">
+                <Label
+                  htmlFor="businessName"
+                  className="text-sm font-medium flex items-center gap-2"
+                >
+                  <Building2 className="h-4 w-4 text-muted-foreground" />
+                  Business Name
+                </Label>
+                <Input
+                  id="businessName"
+                  defaultValue="CarWash Somalia"
+                  className="h-11"
+                  placeholder="Enter business name"
+                />
+              </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Operating Hours</CardTitle>
-          <CardDescription>
-            Set your business opening and closing times.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
-            <div className="font-medium">Monday - Friday</div>
-            <Input type="time" defaultValue="08:00" />
-            <Input type="time" defaultValue="18:00" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
-            <div className="font-medium">Saturday</div>
-            <Input type="time" defaultValue="09:00" />
-            <Input type="time" defaultValue="17:00" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
-            <div className="font-medium">Sunday</div>
-            <div className="col-span-2 text-muted-foreground">Closed</div>
-          </div>
-          <Separator className="my-4" />
-          <Button>Update Hours</Button>
-        </CardContent>
-      </Card>
+              {/* Business Email */}
+              <div className="space-y-2">
+                <Label
+                  htmlFor="email"
+                  className="text-sm font-medium flex items-center gap-2"
+                >
+                  <Mail className="h-4 w-4 text-muted-foreground" />
+                  Business Email
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  defaultValue="contact@carwashsomalia.com"
+                  className="h-11"
+                  placeholder="email@example.com"
+                />
+              </div>
+
+              {/* Phone Number */}
+              <div className="space-y-2">
+                <Label
+                  htmlFor="phone"
+                  className="text-sm font-medium flex items-center gap-2"
+                >
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  Phone Number
+                </Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  defaultValue="+252 61 123 4567"
+                  className="h-11"
+                  placeholder="+252 XX XXX XXXX"
+                />
+              </div>
+
+              {/* Website */}
+              <div className="space-y-2">
+                <Label
+                  htmlFor="website"
+                  className="text-sm font-medium flex items-center gap-2"
+                >
+                  <Globe className="h-4 w-4 text-muted-foreground" />
+                  Website
+                </Label>
+                <Input
+                  id="website"
+                  type="url"
+                  defaultValue="www.carwashsomalia.com"
+                  className="h-11"
+                  placeholder="www.example.com"
+                />
+              </div>
+            </div>
+
+            {/* Address - Full Width */}
+            <div className="space-y-2">
+              <Label
+                htmlFor="address"
+                className="text-sm font-medium flex items-center gap-2"
+              >
+                <MapPin className="h-4 w-4 text-muted-foreground" />
+                Business Address
+              </Label>
+              <Input
+                id="address"
+                defaultValue="123 Maka Al Mukarama Rd, Mogadishu, Somalia"
+                className="h-11"
+                placeholder="Enter full business address"
+              />
+            </div>
+
+            {/* Description */}
+            <div className="space-y-2">
+              <Label htmlFor="description" className="text-sm font-medium">
+                Business Description (Optional)
+              </Label>
+              <Textarea
+                id="description"
+                placeholder="Describe your car wash services and what makes your business unique..."
+                className="resize-none min-h-[100px]"
+                defaultValue=""
+              />
+              <p className="text-xs text-muted-foreground">
+                A brief description helps customers understand your services
+                better
+              </p>
+            </div>
+
+            <div className="flex justify-end pt-2">
+              <Button size="lg" className="min-w-[140px]">
+                <Save className="mr-2 h-4 w-4" />
+                Save Changes
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
